@@ -17,8 +17,18 @@ body {
 }
 
 .container {
+    max-width: 1980px;
     width: 100%;
     margin: 0 auto;
+}
+
+h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --text-size: calc(1rem + 1vw)
 }
 
 .header {
@@ -26,6 +36,8 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    padding-top: 50px;
+    height: 100vh;
 }
 
 .header .row {
@@ -35,8 +47,6 @@ body {
 .header__container {
     max-width: 1630px;
     padding: 0 15px;
-    padding-top: 50px;
-    padding-bottom: 49%;
 }
 
 .header__logo {
@@ -77,7 +87,56 @@ body {
     display: flex;
 }
 
-.person__left {
-    padding-left: 15%;
-    padding-right: 15%;
+.person .row {
+    align-items: center;
+}
+
+.person__col {
+    width: 50%;
+}
+
+.person__col--left {
+    padding-left: 11.1vw;
+    padding-right: 5.75vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.person:nth-child(odd) .person__col--left {
+    padding-right: 6.1vw;
+    padding-left: 6vw;
+}
+
+.person:nth-child(odd) .person__descr {
+    max-width: ;
+}
+
+.person__descr {
+    font-family: Open Sans;
+    display: block;
+    max-width: 38.37vw;
+    font-size: 1vw;
+    margin-top: 1.74vw;
+    line-height: 200%;
+}
+
+.person__title {
+    font-weight: 600;
+    font-size: 2.32vw;
+    line-height: 2.4vw;
+}
+
+.person__postitle {
+    font-size: 1.39vw;
+    color: #DE1231;
+    line-height: 2.4vw;
+}
+
+.person__col--right img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 24vw;
 }
