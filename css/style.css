@@ -22,7 +22,8 @@ body {
     margin: 0 auto;
 }
 
-h2, p {
+h2,
+p {
     margin: 0;
     padding: 0;
 }
@@ -103,13 +104,9 @@ h2, p {
     justify-content: center;
 }
 
-.person:nth-child(odd) .person__col--left {
+.person:nth-child(even) .person__col--left {
     padding-right: 6.1vw;
     padding-left: 6vw;
-}
-
-.person:nth-child(odd) .person__descr {
-    max-width: ;
 }
 
 .person__descr {
@@ -139,4 +136,278 @@ h2, p {
     height: 100%;
     object-fit: cover;
     min-height: 24vw;
+}
+
+.video {
+    position: relative;
+}
+
+.video__bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .6)
+}
+
+.video__play {
+    background: none;
+    border: none;
+    transition: .3s;
+    max-width: 150px;
+    padding: 0;
+    opacity: .6;
+    cursor: pointer;
+}
+
+.video__play img {
+    width: 100%;
+    height: auto;
+}
+
+.video__play:hover {
+    opacity: 1;
+}
+
+.video__parallax {
+    position: relative;
+    overflow: hidden;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+.video__parallax video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 180%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.modal-video {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color:rgba(0, 0, 0, .6);
+    opacity: 0;
+    visibility: hidden;
+    padding: 0 15px;
+    transition: .3s;
+    z-index: 200;
+    overflow: auto;
+}
+
+.modal-video.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-video__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 1200px;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-video__video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+}
+
+.modal-video__close {
+    cursor: pointer;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: none;
+    border: none;
+    right: 15px;
+    top: 15px;
+    transition: .3s;
+    opacity: 0.6;
+}
+
+.modal-video__close:hover {
+    opacity: .8;
+}
+
+.modal-video__close svg {
+    width: 100%;
+    fill: #fff;
+    height: 100%;
+}
+
+
+@media (max-width:768px) {
+    .header {
+        padding-top: 30px;
+        height: 40vh;
+        padding-bottom: 25px;
+    }
+
+    .header__logo {
+        max-width: fit-content;
+    }
+
+    .header__logo .header__logo-icon {
+        display: none;
+    }
+
+    .header .container {
+        height: 100%;
+    }
+
+    .header .row {
+        height: 100%;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .person {
+        padding-top: 42px;
+    }
+
+    .person .row {
+        flex-direction: column;
+    }
+
+    .person:first-child {
+        padding-top: 24px;
+    }
+
+    .person:nth-child(even) .row {
+        flex-direction: column-reverse;
+    }
+
+
+    .person__col {
+        width: 100%;
+    }
+
+    .person__col--left {
+        padding: 0 15px !important;
+    }
+
+    .person__col--right {
+        margin-top: 20px;
+    }
+
+    .person__col--left img {
+        min-height: auto;
+    }
+
+    .person__title {
+        font-size: 32px;
+        line-height: 30px;
+    }
+
+    .person__postitle {
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .person__descr {
+        margin-top: 20px;
+        font-size: 14px;
+        max-height: 109px;
+        height: 100%;
+        overflow: hidden;
+        max-width: 100%;
+        position: relative;
+        padding-bottom: 28px;
+        transition: .3s;
+        transition: max-height 0.3s ease;
+    }
+
+    .person__descr::after {
+        content: "";
+        position: absolute;
+        height: 28px;
+        width: 100%;
+        left: 0;
+        bottom: 0;
+        background-color: #fff;
+        z-index: 1;
+    }
+
+    .person__descr::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 11.3px;
+        background-image: url('../images/icons/spoiler-arrow.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: 2;
+        transition: .3s;
+    }
+
+    .person__descr.active {
+        max-height: none;
+    }
+
+    .person__descr.active::before {
+        transform: translateX(-50%) rotateZ(180deg);
+    }
+
+    .video__parallax {
+        height: 302px;
+    }
+
+    .video__parallax video{
+        height: 100vh;
+    }
+
+    .video__play {
+        max-width: 52px;
+    }
+
+    .modal-video__close {
+        width: 22px;
+        height: 22px;
+    }
+
+}
+
+@media (max-width:576px) {
+    .header__logo {
+        max-width: 90px;
+    }
+
+    .header {
+        height: 428px;
+    }
+
+    .video__parallax {
+        height: 203px;
+    }
+
+    .video__parallax video {
+        height: 500px;
+    }
 }

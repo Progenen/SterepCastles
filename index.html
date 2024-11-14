@@ -40,46 +40,80 @@
             </div>
         </div>
     </header>
-    <section class="person">
-        <div class="row">
-            <div class="person__col person__col--left">
-                <h2 class="person__title">
-                    ДЕНИС ДАВЫДОВ
-                </h2>
-                <span class="person__postitle">
-                    Ударные
-                </span>
-                <p class="person__descr">
-                    Тут будет какой нибудь текст про музыканта. Тут будет какой нибудь текст про музыканта. Тут будет
-                    какой нибудь текст про музыканта. Тут будет какой нибудь текст про музыканта. Тут будет какой нибудь
-                    текст про музыканта. Тут будет какой нибудь текст про музыканта.
-                </p>
-            </div>
-            <div class="person__col person__col--right">
-                <img src="images/content/person-img1.png" alt="">
-            </div>
+    <section class="video">
+        <div class="video__parallax">
+            <video autoplay muted loop>
+                <source src="video/video-preview.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+        </div>
+        <div class="video__bg">
+            <button class="video__play">
+                <img src="images/icons/play.png" alt="">
+            </button>
         </div>
     </section>
-    <section class="person">
-        <div class="row">
-            <div class="person__col person__col--right">
-                <img src="images/content/person-img2.png" alt="">
+    <div class="persons">
+        <section class="person">
+            <div class="row">
+                <div class="person__col person__col--left">
+                    <h2 class="person__title">
+                        ДЕНИС ДАВЫДОВ
+                    </h2>
+                    <span class="person__postitle">
+                        Ударные
+                    </span>
+                    <p class="person__descr">
+                        Тут будет какой нибудь текст про музыканта. Тут будет какой нибудь текст про музыканта. Тут
+                        будет
+                        какой нибудь текст про музыканта. Тут будет какой нибудь текст про музыканта. Тут будет какой
+                        нибудь
+                        текст про музыканта. Тут будет какой нибудь текст про музыканта.
+                    </p>
+                </div>
+                <div class="person__col person__col--right">
+                    <img src="images/content/person-img1.png" alt="">
+                </div>
             </div>
-            <div class="person__col person__col--left">
-                <h2 class="person__title">
-                    ДАНИЛ ГУСЕВ
-                </h2>
-                <span class="person__postitle">
-                    DJ DMC 54
-                </span>
-                <p class="person__descr">
-                    Тут будет какой нибудь текст про музыканта. Тут будет какой нибудь текст про музыканта. Тут будет
-                    какой нибудь текст про музыканта. Тут будет какой нибудь текст про музыканта. Тут будет какой нибудь
-                    текст про музыканта. Тут будет какой нибудь текст про музыканта. 
-                </p>
+        </section>
+        <section class="person">
+            <div class="row">
+                <div class="person__col person__col--right">
+                    <img src="images/content/person-img2.png" alt="">
+                </div>
+                <div class="person__col person__col--left">
+                    <h2 class="person__title">
+                        ДАНИЛ ГУСЕВ
+                    </h2>
+                    <span class="person__postitle">
+                        DJ DMC 54
+                    </span>
+                    <p class="person__descr">
+                        Тут будет какой нибудь текст про музыканта. Тут будет какой нибудь текст про музыканта. Тут
+                        будет
+                        какой нибудь текст про музыканта. Тут будет какой нибудь текст про музыканта. Тут будет какой
+                        нибудь
+                        текст про музыканта. Тут будет какой нибудь текст про музыканта.
+                    </p>
+                </div>
             </div>
+        </section>
+    </div>
+    <div class="modal-video">
+        <button class="modal-video__close">
+            <svg fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 490 490"
+                xml:space="preserve">
+                <polygon points="456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490 489.292,457.678 277.331,245.004 489.292,32.337 " />
+            </svg>
+        </button>
+        <div class="modal-video__content">
+            <video class="modal-video__video" controls>
+                <source src="video/video-preview.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
         </div>
-    </section>
+    </div>
     <script src="js/main.js"></script>
 </body>
 
