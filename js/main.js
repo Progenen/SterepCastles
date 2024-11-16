@@ -50,7 +50,7 @@ window.addEventListener('scroll', () => {
     // Вычисляем значение прокрутки относительно центра секции
     const scrollToSectionCenter = sectionCenter - currentScroll;
 
-    video.style.transform = `translateY(-${scrollToSectionCenter}px)`;
+    video.style.transform = `translateY(-${scrollToSectionCenter * 0.3}px)`;
 });
 
 // modalVideo
