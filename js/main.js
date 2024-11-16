@@ -5,15 +5,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalVideoOpenBtn = document.querySelector(".video__play");
     const modalVideoCloseBtn = document.querySelector(".modal-video__close");
     const modalVideo = document.querySelector(".modal-video");
-    const para = document.createElement("p");
-
-    
-
-    video.play().catch(error => {
-       
-        clipText[0].prepend(para);
-        para.textContent = error;
-    });
 
     function openVideoModal(modal) {
         const modalVideo = modal.querySelector("video");
