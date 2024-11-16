@@ -1,5 +1,6 @@
 const clipText = document.querySelectorAll(".person__descr");
 const video = document.querySelector('.video video');
+const videoSection = document.querySelector(".video");
 const modalVideoOpenBtn = document.querySelector(".video__play");
 const modalVideoCloseBtn = document.querySelector(".modal-video__close");
 const modalVideo = document.querySelector(".modal-video");
@@ -32,15 +33,30 @@ clipText.forEach(el => {
 });
 
 window.addEventListener('scroll', () => {
-    const scrollPosition = window.scrollY;
+    // Получаем элемент (секции)
+    const section = videoSection;
 
-    video.style.transform = `translateY(-${scrollPosition * 0.3}px)`;
+    // Получаем его положение и размеры относительно окна
+    const rect = section.getBoundingClientRect();
+
+    // Вычисляем центр секции относительно окна
+    const sectionCenter = rect.top + scrollY + rect.height / 2;
+
+    console.log(sectionCenter);
+
+    // Получаем текущую прокрутку окна
+    const currentScroll = scrollY;
+
+    // Вычисляем значение прокрутки относительно центра секции
+    const scrollToSectionCenter = sectionCenter - currentScroll;
+
+    video.style.transform = `translateY(-${scrollToSectionCenter}px)`;
 });
 
 // modalVideo
 
 modalVideoOpenBtn.addEventListener("click", () => { openVideoModal(modalVideo) });
-modalVideoCloseBtn.addEventListener("click", () => {closeVideoModal(modalVideo)})
+modalVideoCloseBtn.addEventListener("click", () => { closeVideoModal(modalVideo) })
 
 modalVideo.addEventListener("click", (e) => {
     if (e.target === modalVideo) {
