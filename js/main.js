@@ -161,7 +161,6 @@ closeModal.addEventListener('click', () => {
 slider.addEventListener('click', (e) => {
     if (e.target && e.target.tagName === 'IMG' && isClicked === true) {
         const clickedIndex = [...images].indexOf(e.target);
-        console.log(clickedIndex)
         openModal(clickedIndex);
     }
 });
