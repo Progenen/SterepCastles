@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Открываем модальное окно с найденным изображением
         modal.style.display = "block";
         modalImg.setAttribute("src", img.getAttribute("src"));
-        captionText.textContent = img.alt || "Без подписи";
+        captionText.textContent = img.alt || null;
     }
 
     // Функция для закрытия модального окна
