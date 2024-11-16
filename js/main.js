@@ -76,16 +76,28 @@ document.addEventListener("DOMContentLoaded", () => {
     // Динамическое добавление элементов из HTML
     function appendImages() {
         const images = slider.querySelectorAll('img');
-        images.forEach(img => {
-            const clone = img.cloneNode(true);
+
+        images.forEach((img, i) => {
+
+            const clone = img.cloneNode();
+
+            clone.dataset.index = img.getAttribute("data-index"); 
+            clone.classList.add("clone");
+
             slider.appendChild(clone); // Добавляем копию в конец
         });
     }
 
     function prependImages() {
         const images = slider.querySelectorAll('img');
-        [...images].reverse().forEach(img => {
+
+        [...images].reverse().forEach((img, i) => {
             const clone = img.cloneNode(true);
+            
+            clone.classList.add("clone")
+
+            clone.dataset.index = img.getAttribute("data-index"); 
+
             slider.prepend(clone); // Добавляем копию в начало
         });
     }
@@ -158,16 +170,29 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextBtn = document.getElementById('nextBtn');
 
     // Получаем все изображения
-    const images = slider.querySelectorAll('img');
+    const images = slider.querySelectorAll('img:not(.clone)');
     let currentIndex = -1;
 
     // Функция для открытия модального окна с изображением
     function openModal(index) {
+        if (index < 0 || index >= images.length) {
+            console.error("Индекс выходит за пределы допустимого диапазона. Индекс: " + index) ;
+            return;
+        }
+    
+        // Ищем оригинальное изображение в слайдере
+        const img = slider.querySelector(`img[data-index="${index}"]`);
         currentIndex = index;
-        const img = images[currentIndex];
+    
+        if (!img) {
+            console.error(`Изображение с data-index=${index} не найдено.`);
+            return;
+        }
+    
+        // Открываем модальное окно с найденным изображением
         modal.style.display = "block";
-        modalImg.setAttribute("src", img.getAttribute("src"))
-        captionText.innerHTML = img.alt;
+        modalImg.setAttribute("src", img.getAttribute("src"));
+        captionText.textContent = img.alt || "Без подписи";
     }
 
     // Функция для закрытия модального окна
@@ -178,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Открытие модального окна при клике на изображение в слайдере
     slider.addEventListener('click', (e) => {
         if (e.target && e.target.tagName === 'IMG' && isClicked === true) {
-            const clickedIndex = [...images].indexOf(e.target);
+            clickedIndex = Number(e.target.getAttribute("data-index"));
             openModal(clickedIndex);
         }
     });
@@ -194,6 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (currentIndex > 0) {
             openModal(currentIndex - 1);
         } else {
+            console.log(images.length - 1)
             openModal(images.length - 1); // Переход к последнему изображению
         }
     });
