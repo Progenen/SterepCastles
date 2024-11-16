@@ -3,7 +3,6 @@ const video = document.querySelector('.video video');
 const modalVideoOpenBtn = document.querySelector(".video__play");
 const modalVideoCloseBtn = document.querySelector(".modal-video__close");
 const modalVideo = document.querySelector(".modal-video");
-
 function openVideoModal(modal) {
     const modalVideo = modal.querySelector("video");
 
@@ -53,6 +52,7 @@ modalVideo.addEventListener("click", (e) => {
 const slider = document.querySelector('.gallery__items');
 let isHovered = false;
 let isDragging = false;
+let isClicked = true;
 let startX, scrollLeft;
 
 // Динамическое добавление элементов из HTML
@@ -94,7 +94,6 @@ function autoScroll() {
 
 // Реализация перетаскивания мышью
 slider.addEventListener('mousedown', (e) => {
-    isHovered = true;
     isDragging = true;
     startX = e.pageX - slider.offsetLeft;
     scrollLeft = slider.scrollLeft;
@@ -104,6 +103,7 @@ slider.addEventListener('mousedown', (e) => {
 slider.addEventListener('mousemove', (e) => {
     if (!isDragging) return;
     e.preventDefault();
+    isClicked = false;
     const x = e.pageX - slider.offsetLeft;
     const walk = x - startX;
     slider.scrollLeft = scrollLeft - walk; // Прокрутка в зависимости от движения мыши
@@ -112,9 +112,13 @@ slider.addEventListener('mousemove', (e) => {
 slider.addEventListener('mouseup', () => {
     isDragging = false;
     slider.classList.remove('active');
+    setTimeout(() => {
+        isClicked = true;
+    }, 10)
 });
 
 slider.addEventListener('mouseleave', () => {
+    isHovered = true;
     isDragging = false;
     slider.classList.remove('active');
 });
@@ -127,3 +131,67 @@ slider.addEventListener('mouseleave', () => {
 appendImages();
 appendImages(); // Добавляем элементы заранее
 setInterval(autoScroll, 20); // Настройка скорости автоскролла
+
+const modal = document.getElementById('modal');
+const modalImg = document.getElementById('modalImage');
+const captionText = document.getElementById('modalCaption');
+const closeModal = document.getElementById('closeModal');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+// Получаем все изображения
+const images = slider.querySelectorAll('img');
+let currentIndex = -1;
+
+// Функция для открытия модального окна с изображением
+function openModal(index) {
+    currentIndex = index;
+    const img = images[currentIndex];
+    modal.style.display = "block";
+    modalImg.src = img.src;
+    captionText.innerHTML = img.alt;
+}
+
+// Функция для закрытия модального окна
+closeModal.addEventListener('click', () => {
+    modal.style.display = "none";
+});
+
+// Открытие модального окна при клике на изображение в слайдере
+slider.addEventListener('click', (e) => {
+    if (e.target && e.target.tagName === 'IMG' && isClicked === true) {
+        const clickedIndex = [...images].indexOf(e.target);
+        console.log(clickedIndex)
+        openModal(clickedIndex);
+    }
+});
+
+slider.addEventListener('click', (e) => {
+    if (isDragging) {
+        e.preventDefault(); // Отменяем действие клика при перетаскивании
+    }
+});
+
+// Навигация по изображениям с помощью кнопок
+prevBtn.addEventListener('click', () => {
+    if (currentIndex > 0) {
+        openModal(currentIndex - 1);
+    } else {
+        openModal(images.length - 1); // Переход к последнему изображению
+    }
+});
+
+nextBtn.addEventListener('click', () => {
+    if (currentIndex < images.length - 1) {
+        openModal(currentIndex + 1);
+    } else {
+        openModal(0); // Переход к первому изображению
+    }
+});
+
+// Закрытие модального окна при клике вне изображения
+window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.style.display = "none";
+    }
+});
