@@ -148,7 +148,7 @@ function openModal(index) {
     currentIndex = index;
     const img = images[currentIndex];
     modal.style.display = "block";
-    modalImg.src = img.src;
+    modalImg.setAttribute("src", img.getAttribute("src"))
     captionText.innerHTML = img.alt;
 }
 
