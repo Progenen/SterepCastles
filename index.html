@@ -42,7 +42,7 @@
     </header>
     <section class="video">
         <div class="video__parallax">
-            <video autoplay muted loop controls>
+            <video autoplay muted loop playsinline preload="auto">
                 <source src="video/video-preview.mp4" type="video/mp4">
                 Ваш браузер не поддерживает видео.
             </video>
@@ -316,7 +316,7 @@
             </svg>
         </button>
         <div class="modal-video__content">
-            <video class="modal-video__video" controls>
+            <video class="modal-video__video" controls muted>
                 <source src="video/video-main.mp4" type="video/mp4">
                 Ваш браузер не поддерживает видео.
             </video>
