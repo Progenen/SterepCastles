@@ -157,6 +157,25 @@ document.addEventListener("DOMContentLoaded", () => {
         isHovered = false;
     });
 
+    slider.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+        slider.classList.add('active');
+    });
+    
+    slider.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const x = e.touches[0].pageX - slider.offsetLeft;
+        const walk = x - startX;
+        slider.scrollLeft = scrollLeft - walk;
+    });
+    
+    slider.addEventListener('touchend', () => {
+        isDragging = false;
+        slider.classList.remove('active');
+    });
+
     // Инициализация
     appendImages();
     appendImages(); // Добавляем элементы заранее
